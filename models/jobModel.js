@@ -2,6 +2,7 @@ import { db } from "../config/db.js";
 
 export const JobModel = {
   async create(job) {
+    //insert a job into the jobs table
     const sql = `INSERT INTO jobs (taskName, payload, priority, status) VALUES (?, ?, ?, ?)`;
     const [result] = await db.execute(sql, [
       job.taskName,
