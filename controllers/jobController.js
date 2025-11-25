@@ -24,7 +24,11 @@ export const JobController = {
       // Ensure payload is parsed to object when returned
       const parsed = jobs.map((j) => {
         try {
-          return { ...j, payload: typeof j.payload === 'string' ? JSON.parse(j.payload) : j.payload };
+          return {
+            ...j,
+            payload:
+              typeof j.payload === "string" ? JSON.parse(j.payload) : j.payload,
+          };
         } catch (e) {
           return { ...j, payload: j.payload };
         }
@@ -41,7 +45,10 @@ export const JobController = {
       if (!job) return res.status(404).json({ message: "Job not found" });
 
       try {
-        job.payload = typeof job.payload === 'string' ? JSON.parse(job.payload) : job.payload;
+        job.payload =
+          typeof job.payload === "string"
+            ? JSON.parse(job.payload)
+            : job.payload;
       } catch (e) {
         job.payload = job.payload;
       }
@@ -71,7 +78,10 @@ export const JobController = {
           jobId: id,
           taskName: job.taskName,
           priority: job.priority,
-          payload: typeof job.payload === 'string' ? JSON.parse(job.payload) : job.payload,
+          payload:
+            typeof job.payload === "string"
+              ? JSON.parse(job.payload)
+              : job.payload,
           completedAt: new Date(),
         });
       }, 3000);
